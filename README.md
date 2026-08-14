@@ -1,122 +1,129 @@
+# 🔐 Linux User Security Auditor
 
+A Bash-based Linux security auditing tool that analyzes local user accounts and identifies potentially risky account configurations.
 
----
-
-```markdown
-# 👤🔐 Automated User Account Security Checker
-
-A Bash script that automatically audits user accounts on a Linux system for common security misconfigurations. Helps sysadmins and security-conscious users identify risky account settings, inactive accounts, and password issues.
+The tool helps system administrators and security learners review user-account information, detect inactive or potentially problematic accounts, and generate an audit report.
 
 ---
 
-## 🔍 What It Checks
+## ✨ Features
 
-- 🔒 Accounts with no password set
-- 👻 Inactive or locked user accounts
-- 🧑‍🤝‍🧑 Accounts with UID 0 (superuser privileges)
-- 🛑 Shell set to `/bin/false` or `/sbin/nologin`
-- ⏳ Users who haven't logged in recently
+- 👤 Audits local Linux user accounts
+- 🔍 Reviews account-related security information
+- ⚠️ Identifies potentially risky account configurations
+- 📊 Generates an audit report
+- 🐧 Designed for Linux environments
+- ⚡ Lightweight Bash-based implementation
+- 🤖 Automates repetitive security checks
+
+---
+
+## 🧰 Technologies
+
+- Bash
+- Linux
+- Shell Scripting
+- Linux User Management
+- Security Auditing
+
+---
+
+## 📋 Prerequisites
+
+Before running the tool, make sure you have:
+
+- Linux operating system
+- Bash shell
+- Basic knowledge of Linux terminal commands
+- Appropriate permissions to inspect local account information
+
+The project was developed and tested in a Linux environment.
 
 ---
 
 ## 🚀 Getting Started
 
-### 🧰 Prerequisites
+### Clone the Repository
 
-- Linux (Debian/Ubuntu preferred)
-- Bash shell
-- Root or sudo access for full results
+git clone https://github.com/abdullah-al-rafid/linux-user-security-auditor.git
 
-### 📥 Clone the Repository
+cd linux-user-security-auditor
 
-```bash
-git clone https://github.com/yourusername/user-security-checker.git
-cd user-security-checker
-```
+### Make the Script Executable
 
-### 🛠️ Make the Script Executable
-
-```bash
-chmod +x user_security_checker.sh
-```
+chmod +x automated.sh
 
 ---
 
 ## ▶️ Usage
 
-```bash
-./user_security_checker.sh
-```
+Run the auditor using:
 
-Run as `root` for best results:
+./automated.sh
 
-```bash
-sudo ./user_security_checker.sh
-```
+The script performs the configured user-account security checks and generates an audit report.
 
 ---
 
-## 🧪 Sample Output
+## 📊 Audit Report
 
-```bash
-==============================
-🔍 Automated User Audit Report
-==============================
+The project includes an example audit report generated during testing:
 
-✅ Total Users: 25
-⚠️  Users with no password: 2
-⚠️  Users with UID 0 (root-level access): 2
-🚫 Inactive/locked users: 4
-🚷 Users with nologin shells: 3
-⏳ Users not logged in within last 90 days: 5
+`user_audit_2025-04-11.txt`
 
-Recommendation:
-- Set strong passwords for users without one.
-- Review root-level users: root, devadmin
-- Consider removing or archiving inactive accounts.
-
-==============================
-Audit complete.
-```
+The report provides a record of the findings produced by the auditing script.
 
 ---
 
-## ⚠️ Why It Matters
+## 🔐 Why This Tool?
 
-Unused or misconfigured user accounts can pose serious security threats:
-- Unauthorized access
-- Privilege escalation
-- Hidden backdoors
+User-account security is an important part of Linux system administration and security.
 
-This tool gives system administrators an easy, automated way to detect potential vulnerabilities related to user account settings.
+Misconfigured, inactive, or unnecessarily privileged accounts can increase the security risk of a system. This project provides an automated approach for reviewing account-related information and identifying configurations that may require further investigation.
 
----
-
-## 📌 Features
-
-- 🔎 Quick account audit with no dependencies
-- 🧼 Clear, categorized warnings and suggestions
-- 🔧 Easy to customize and extend
+> This tool is intended for security auditing and educational purposes. Findings should be manually reviewed before taking any remediation action.
 
 ---
 
-## 📈 Future Improvements
+## 📁 Project Structure
 
-- [ ] Export results to a log or JSON file
-- [ ] Email reports to sysadmin
-- [ ] Check for expired passwords
-- [ ] Add color-coded CLI output
-
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
+- `automated.sh` — Main Bash auditing script
+- `user_audit_2025-04-11.txt` — Example audit report
+- `README.md` — Project documentation
 
 ---
 
-## 🤝 Contributing
+## 🎯 Project Goals
 
-PRs are welcome! If you have suggestions for improvements or new checks to add, feel free to fork and submit a pull request.
+This project was created to practice:
+
+- Linux user and account management
+- Bash scripting
+- Security auditing fundamentals
+- System administration concepts
+- Command-line automation
+- Automated security checks
 
 ---
+
+## 🔮 Future Improvements
+
+- [ ] Add configurable audit checks
+- [ ] Add severity levels for findings
+- [ ] Add color-coded terminal output
+- [ ] Support additional account-security checks
+- [ ] Improve report formatting
+- [ ] Add optional CSV/JSON report export
+
+---
+
+## 👨‍💻 Author
+
+**Abdullah Al Rafid**
+
+Computer Science & Engineering Student  
+Daffodil International University
+
+GitHub: [@abdullah-al-rafid](https://github.com/abdullah-al-rafid)
+
+LinkedIn: [Abdullah Al Rafid](https://www.linkedin.com/in/abdullah-al-rafid)
