@@ -1,20 +1,21 @@
 # 🔐 Linux User Security Auditor
 
-A Bash-based Linux security auditing tool that analyzes local user accounts and identifies potentially risky account configurations.
+A lightweight Bash-based security auditing tool for reviewing local Linux user accounts and identifying potentially risky account configurations.
 
-The tool helps system administrators and security learners review user-account information, detect inactive or potentially problematic accounts, and generate an audit report.
+The script automates several account-security checks and generates a dated text report containing the audit findings.
 
 ---
 
 ## ✨ Features
 
-- 👤 Audits local Linux user accounts
-- 🔍 Reviews account-related security information
-- ⚠️ Identifies potentially risky account configurations
-- 📊 Generates an audit report
-- 🐧 Designed for Linux environments
-- ⚡ Lightweight Bash-based implementation
-- 🤖 Automates repetitive security checks
+The current script checks for:
+
+- 👑 Users with UID 0 (root privileges)
+- 🔑 Users with empty password fields
+- 🕒 Users who have never logged in
+- 📁 Potentially risky user home-directory permissions
+- ⚠️ Users present in `/etc/passwd` but missing from `/etc/shadow`
+- 📄 Automatic generation of a dated audit report
 
 ---
 
@@ -24,20 +25,20 @@ The tool helps system administrators and security learners review user-account i
 - Linux
 - Shell Scripting
 - Linux User Management
+- System Administration
 - Security Auditing
 
 ---
 
 ## 📋 Prerequisites
 
-Before running the tool, make sure you have:
+To run the script, you need:
 
-- Linux operating system
+- A Linux operating system
 - Bash shell
-- Basic knowledge of Linux terminal commands
-- Appropriate permissions to inspect local account information
-
-The project was developed and tested in a Linux environment.
+- Standard Linux utilities such as `awk`, `grep`, `cut`, and `lastlog`
+- Appropriate permissions to inspect system account information
+- `sudo` access for checks involving `/etc/shadow`
 
 ---
 
@@ -45,75 +46,112 @@ The project was developed and tested in a Linux environment.
 
 ### Clone the Repository
 
-git clone https://github.com/abdullah-al-rafid/linux-user-security-auditor.git
+`git clone https://github.com/abdullah-al-rafid/linux-user-security-auditor.git`
 
-cd linux-user-security-auditor
+`cd linux-user-security-auditor`
 
 ### Make the Script Executable
 
-chmod +x automated.sh
+`chmod +x automated.sh`
 
 ---
 
 ## ▶️ Usage
 
-Run the auditor using:
+Run the security auditor:
 
-./automated.sh
+`./automated.sh`
 
-The script performs the configured user-account security checks and generates an audit report.
+Depending on your system permissions, you may be prompted for sudo access during checks involving `/etc/shadow`.
+
+After the audit completes, the script creates a report using the following naming format:
+
+`user_audit_YYYY-MM-DD.txt`
+
+---
+
+## 🔎 Security Checks
+
+### 1. Root-Privilege Accounts
+
+Identifies accounts with UID `0`.
+
+On a typical Linux installation, root is expected to have UID 0. Additional UID 0 accounts should be reviewed.
+
+### 2. Empty Password Fields
+
+Checks `/etc/shadow` for user entries with an empty password field.
+
+### 3. Never-Logged-In Users
+
+Uses `lastlog` to identify accounts reported as never having logged in.
+
+These results should be reviewed in context because some legitimate system or service accounts may never require interactive login.
+
+### 4. Home-Directory Permission Check
+
+Reviews user home directories for the permission condition implemented by the script.
+
+Potential findings should be manually verified before making permission changes.
+
+### 5. `/etc/shadow` Consistency
+
+Checks whether users listed in `/etc/passwd` also have corresponding entries in `/etc/shadow`.
 
 ---
 
 ## 📊 Audit Report
 
-The project includes an example audit report generated during testing:
+An example generated report is included in this repository:
 
 `user_audit_2025-04-11.txt`
 
-The report provides a record of the findings produced by the auditing script.
-
----
-
-## 🔐 Why This Tool?
-
-User-account security is an important part of Linux system administration and security.
-
-Misconfigured, inactive, or unnecessarily privileged accounts can increase the security risk of a system. This project provides an automated approach for reviewing account-related information and identifying configurations that may require further investigation.
-
-> This tool is intended for security auditing and educational purposes. Findings should be manually reviewed before taking any remediation action.
+The report records the results of each security check and can be reviewed after the script finishes.
 
 ---
 
 ## 📁 Project Structure
 
-- `automated.sh` — Main Bash auditing script
-- `user_audit_2025-04-11.txt` — Example audit report
+- `automated.sh` — Main Bash security auditing script
+- `user_audit_2025-04-11.txt` — Example generated audit report
 - `README.md` — Project documentation
+
+---
+
+## 🔐 Why This Project?
+
+User-account configuration is an important part of Linux system security.
+
+This project demonstrates how Bash scripting can automate repetitive account-auditing tasks and consolidate findings into a simple report for further review.
+
+> **Note:** This project is intended for educational and authorized security-auditing purposes. A reported condition is not automatically a confirmed vulnerability and should be manually reviewed before remediation.
 
 ---
 
 ## 🎯 Project Goals
 
-This project was created to practice:
+This project was created to strengthen practical knowledge of:
 
 - Linux user and account management
 - Bash scripting
+- Linux file and account structures
 - Security auditing fundamentals
-- System administration concepts
 - Command-line automation
-- Automated security checks
+- System administration
 
 ---
 
 ## 🔮 Future Improvements
 
-- [ ] Add configurable audit checks
-- [ ] Add severity levels for findings
-- [ ] Add color-coded terminal output
-- [ ] Support additional account-security checks
-- [ ] Improve report formatting
-- [ ] Add optional CSV/JSON report export
+Planned improvements:
+
+- Add configurable audit checks
+- Add severity levels for findings
+- Improve home-directory permission validation
+- Add color-coded terminal output
+- Improve report formatting
+- Add optional CSV or JSON report export
+- Add command-line arguments and help documentation
 
 ---
 
